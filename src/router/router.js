@@ -14,20 +14,20 @@ router.get('/', (req, res)=>{
 });
 
 //.Devuelve  todos los datos buzosycamperas
-router.get('/buzosycamperas', verificarToken, (req, res)=>{
-    jwt.verify(req.token, 'siliconKey', (error, valido)=>{
-        if(error){
-            res.sendStatus(403);
-        }else{
-        mysqlConeccion.query('select * from buzosycamperas order by estado, idbuzosycamperas', (err, registro)=>{
+router.get('/buzosycamperas',  (req, res)=>{
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+        mysqlConeccion.query('select * from buzosycamperas order by estado, idBuzosyCamperas', (err, registro)=>{
             if(!err){
                 res.json(registro);
             }else{
                 console.log(err)
             }
         })
-        }
-    })
+        // }
+    // })
 });
 
 
@@ -123,11 +123,11 @@ router.delete('/buzosycamperas/:idbuzosycamperas', (req, res)=>{
 });
 
 //.Devuelve  todos los datos chanclas
-router.get('/chanclas', verificarToken, (req, res)=>{
-    jwt.verify(req.token, 'siliconKey', (error, valido)=>{
-        if(error){
-            res.sendStatus(403);
-        }else{
+router.get('/chanclas', (req, res)=>{
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
         mysqlConeccion.query('select * from chanclas order by estado, idchanclas', (err, registro)=>{
             if(!err){
                 res.json(registro);
@@ -135,8 +135,8 @@ router.get('/chanclas', verificarToken, (req, res)=>{
                 console.log(err)
             }
         })
-        }
-    })
+    //     }
+    // })
 });
 
 
@@ -232,11 +232,11 @@ router.delete('/chanclas/:idchanclas', (req, res)=>{
 });
 
 //.Devuelve  todos los datos pantalones
-router.get('/pantalones', verificarToken, (req, res)=>{
-    jwt.verify(req.token, 'siliconKey', (error, valido)=>{
-        if(error){
-            res.sendStatus(403);
-        }else{
+router.get('/pantalones',  (req, res)=>{
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
         mysqlConeccion.query('select * from pantalones order by estado, idpantalones', (err, registro)=>{
             if(!err){
                 res.json(registro);
@@ -244,8 +244,8 @@ router.get('/pantalones', verificarToken, (req, res)=>{
                 console.log(err)
             }
         })
-        }
-    })
+    //     }
+    // })
 });
 
 
@@ -341,20 +341,20 @@ router.delete('/pantalones/:idpantalones', (req, res)=>{
 });
 
 //.Devuelve  todos los datos mallas
-router.get('/mallas', verificarToken, (req, res)=>{
-    jwt.verify(req.token, 'siliconKey', (error, valido)=>{
-        if(error){
-            res.sendStatus(403);
-        }else{
-        mysqlConeccion.query('select * from mallas order by estado, idmallas', (err, registro)=>{
+router.get('/mallas',  (req, res)=>{
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+        mysqlConeccion.query('select * from mallas order by estado, idMallas', (err, registro)=>{
             if(!err){
                 res.json(registro);
             }else{
                 console.log(err)
             }
         })
-        }
-    })
+    //     }
+    // })
 });
 
 
@@ -450,11 +450,11 @@ router.delete('/mallas/:idmallas', (req, res)=>{
 });
 
 //.Devuelve  todos los datos remeras
-router.get('/remeras', verificarToken, (req, res)=>{
-    jwt.verify(req.token, 'siliconKey', (error, valido)=>{
-        if(error){
-            res.sendStatus(403);
-        }else{
+router.get('/remeras', (req, res)=>{
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
         mysqlConeccion.query('select * from remeras order by estado, idremeras', (err, registro)=>{
             if(!err){
                 res.json(registro);
@@ -462,8 +462,8 @@ router.get('/remeras', verificarToken, (req, res)=>{
                 console.log(err)
             }
         })
-        }
-    })
+    //     }
+    // })
 });
 
 

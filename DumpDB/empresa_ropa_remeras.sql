@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: localhost    Database: empresa_ropa
 -- ------------------------------------------------------
@@ -23,14 +23,13 @@ DROP TABLE IF EXISTS `remeras`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `remeras` (
-  `idRemeras` int NOT NULL AUTO_INCREMENT,
+  `idremeras` int NOT NULL AUTO_INCREMENT,
   `Talle` varchar(45) DEFAULT NULL,
-  `Color` varchar(45) DEFAULT NULL,
   `Cantidad` int NOT NULL,
-  `Estado` char(1) DEFAULT 'A',
-  PRIMARY KEY (`idRemeras`),
-  UNIQUE KEY `idRemeras_UNIQUE` (`idRemeras`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Color` varchar(45) DEFAULT NULL,
+  `Estado` enum('A','B') DEFAULT 'A',
+  PRIMARY KEY (`idremeras`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +38,7 @@ CREATE TABLE `remeras` (
 
 LOCK TABLES `remeras` WRITE;
 /*!40000 ALTER TABLE `remeras` DISABLE KEYS */;
+INSERT INTO `remeras` VALUES (1,'M',15,'Naranja','A'),(2,'XL',7,'Verde','A'),(3,'M',19,'Blanco','A'),(4,'S',21,'Amarillo','A'),(5,'XXL',9,'Negro','A'),(6,'L',4,'Azul','A');
 /*!40000 ALTER TABLE `remeras` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-25 16:15:13
+-- Dump completed on 2023-02-28 10:35:40

@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: localhost    Database: empresa_ropa
 -- ------------------------------------------------------
@@ -27,7 +27,7 @@ CREATE TABLE `usuarios` (
   `nombre_usuario` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `apellido_nombre` varchar(45) NOT NULL,
-  `estado` varchar(1) NOT NULL DEFAULT 'A',
+  `estado` enum('A','B') NOT NULL DEFAULT 'A',
   `fecha_creacion` datetime NOT NULL,
   `fecha_modificacion` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-25 16:15:13
+-- Dump completed on 2023-02-28 10:35:40

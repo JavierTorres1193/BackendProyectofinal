@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: localhost    Database: empresa_ropa
 -- ------------------------------------------------------
@@ -24,13 +24,12 @@ DROP TABLE IF EXISTS `pantalones`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pantalones` (
   `idpantalones` int NOT NULL AUTO_INCREMENT,
-  `talle` varchar(5) DEFAULT NULL,
-  `color` varchar(45) DEFAULT NULL,
-  `cantidad` varchar(45) DEFAULT NULL,
-  `estado` varchar(1) NOT NULL DEFAULT 'A',
-  PRIMARY KEY (`idpantalones`),
-  UNIQUE KEY `idpantalones_UNIQUE` (`idpantalones`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Color` varchar(45) DEFAULT NULL,
+  `Talle` varchar(5) DEFAULT NULL,
+  `Cantidad` varchar(45) DEFAULT NULL,
+  `Estado` enum('A','B') NOT NULL DEFAULT 'A',
+  PRIMARY KEY (`idpantalones`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +38,7 @@ CREATE TABLE `pantalones` (
 
 LOCK TABLES `pantalones` WRITE;
 /*!40000 ALTER TABLE `pantalones` DISABLE KEYS */;
+INSERT INTO `pantalones` VALUES (1,'Rojo','L','5','A'),(2,'Amarillo','XL','9','A'),(3,'Celeste','M','15','A'),(4,'Fucsia','S','12','A'),(5,'Azul','XXL','2','A');
 /*!40000 ALTER TABLE `pantalones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-25 16:15:13
+-- Dump completed on 2023-02-28 10:35:40

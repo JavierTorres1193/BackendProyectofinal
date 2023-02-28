@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const mysqlConeccion= mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: 'password',
     database: 'empresa_ropa'
 });
 
@@ -15,5 +15,5 @@ mysqlConeccion.connect(function(err){
         console.log('Mi coneccion se realizo correctamente');
     }
 })
- 
+
 module.exports= mysqlConeccion;

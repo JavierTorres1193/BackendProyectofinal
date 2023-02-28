@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: localhost    Database: empresa_ropa
 -- ------------------------------------------------------
@@ -23,11 +23,10 @@ DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clientes` (
-  `idClientes` int NOT NULL,
+  `idClientes` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(45) DEFAULT NULL,
   `Direccion` varchar(45) DEFAULT NULL,
   `Telefono` varchar(45) DEFAULT NULL,
-  `Estado` varchar(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`idClientes`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-25 16:15:14
+-- Dump completed on 2023-02-28 10:35:40

@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: localhost    Database: empresa_ropa
 -- ------------------------------------------------------
@@ -25,12 +25,11 @@ DROP TABLE IF EXISTS `mallas`;
 CREATE TABLE `mallas` (
   `idMallas` int NOT NULL AUTO_INCREMENT,
   `Talle` varchar(45) DEFAULT NULL,
-  `Color` varchar(45) DEFAULT NULL,
   `Cantidad` int NOT NULL,
-  `Estado` char(1) DEFAULT '1',
-  PRIMARY KEY (`idMallas`),
-  UNIQUE KEY `idMallas_UNIQUE` (`idMallas`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Color` varchar(45) DEFAULT NULL,
+  `Estado` enum('A','B') NOT NULL DEFAULT 'A',
+  PRIMARY KEY (`idMallas`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +38,7 @@ CREATE TABLE `mallas` (
 
 LOCK TABLES `mallas` WRITE;
 /*!40000 ALTER TABLE `mallas` DISABLE KEYS */;
+INSERT INTO `mallas` VALUES (1,'L',4,'Rojo','A'),(2,'XL',7,'Verde','A'),(3,'M',19,'Azul','A'),(4,'S',27,'Violeta','A'),(5,'XXL',9,'Blanco','A');
 /*!40000 ALTER TABLE `mallas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-25 16:15:13
+-- Dump completed on 2023-02-28 10:35:40
