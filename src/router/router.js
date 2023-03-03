@@ -19,7 +19,7 @@ router.get('/buzosycamperas',  (req, res)=>{
     //     if(error){
     //         res.sendStatus(403);
         // }else{
-        mysqlConeccion.query('select * from buzosycamperas order by estado, idBuzosyCamperas', (err, registro)=>{
+        mysqlConeccion.query('select * from buzosycamperas', (err, registro)=>{
             if(!err){
                 res.json(registro);
             }else{
@@ -52,38 +52,53 @@ router.put('/cambiobuzosycamperas/:id', (req, res)=>{
     
 });
 // alta
-router.put('/altabuzosycamperas/:id', (req, res)=>{
-    let idbuzosycamperas  = req.params.idbuzosycamperas;
-    let query=`UPDATE buzosycamperas SET estado='A' WHERE idbuzosycamperas='${idbuzosycamperas}'`;
+router.put('/altabuzosycamperas/:id',(req, res)=>{
+    //asigna a id_alumno el valor que recibe por el parametro 
+    let id = req.params.id; 
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            let query=`UPDATE buzosycamperas set Estado = 'A' WHERE idBuzosyCamperas='${id}'`;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.json({
+                        status: true,
+                        mensaje:"El producto se dio de ALTA correctamente"
+                    });
+                }else{
+                    console.log('El error  es : '+ err); 
+                }
+            })
+    //     }
+    // })
+ });
 
-     mysqlConeccion.query(query, (err, registros)=>{
-        if(!err){
-            res.json({
-                status: true,
-                mensaje:"buzosycamperas se dio de Alta correctamente"
-            });
-        }else{
-           res.json({
-                status: false,
-                mensaje:"Hubo un error"
-            });
-        }
-    })
-    
-});
+///// BAJA CLIENTE /////
 
-router.get('/buzosycamperas/:idbuzosycamperas',(req, res)=>{
+router.put('/bajabuzosycamperas/:id',(req, res)=>{
+    //asigna a id_alumno el valor que recibe por el parametro 
+    let id = req.params.id; 
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            let query=`UPDATE buzosycamperas set Estado = 'B' WHERE idBuzosyCamperas='${id}'`;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.json({
+                        status: true,
+                        mensaje:"El producto se dio de BAJA correctamente"
+                    });
+                }else{
+                    console.log('El error  es : '+ err); 
+                }
+            })
+    //     }
+    // })
+ });
 
-        const  { idbuzosycamperas } = req.params;
-                mysqlConeccion.query('select * from buzosycamperas where idbuzosycamperas=?',[idbuzosycamperas], (err, registros)=>{
-                    if(!err){
-                        res.json(registros);
-                    }else{
-                        console.log(err)
-                    }
-                })
-       
-    });
+
 
 router.post('/buzosycamperas', (req, res)=>{
     const { idbuzosycamperas } =req.body
@@ -103,24 +118,14 @@ router.post('/buzosycamperas', (req, res)=>{
     
 });
 
-//metodo para eliminar los datos en particular
-router.delete('/buzosycamperas/:idbuzosycamperas', (req, res)=>{
-   let idbuzosycamperas  = req.params.idbuzosycamperas; 
-   jwt.verify(req.token, 'siliconKey', (error, valido)=>{
-    if(error){
-        res.sendStatus(403);
-    }else{
-        let query=`DELETE FROM buzosycamperas WHERE idbuzosycamperas='${idbuzosycamperas}'`;
-        mysqlConeccion.query(query, (err, registros)=>{
-                if(!err){
-                    res.send('El Id que ELIMINAMOS es : '+registros);
-                }else{
-                    res.send('El error  es : '+ err); 
-                }
-            })
-        }
-    })
-});
+
+
+
+
+
+////////////////////// CHANCLAS /////////////////////////
+
+
 
 //.Devuelve  todos los datos chanclas
 router.get('/chanclas', (req, res)=>{
@@ -558,8 +563,18 @@ router.delete('/remeras/:idremeras', (req, res)=>{
     })
 });
 
+
+
+
+////////////////////////////////////////////////////////
+/////////////////////PROVEEDORES /////////////////////////
+//////////////////////////////////////////////////////
+
+
+
+
 //Devuelve a todos los Proveedores activos de nuestra base de datos 
-router.get('/Proveedores',  (req, res)=>{
+router.get('/proveedores',  (req, res)=>{
     
     // jwt.verify(req.token, 'siliconKey', (error)=>{
     //     if(error){
@@ -576,6 +591,55 @@ router.get('/Proveedores',  (req, res)=>{
     //     }
     // });    
 });
+
+
+///// ALTA /////
+router.put('/altaproveedores/:id',(req, res)=>{
+    //asigna a id_alumno el valor que recibe por el parametro 
+    let id = req.params.id; 
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            let query=`UPDATE proveedores set Estado = 'A' WHERE idProveedores='${id}'`;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.json({
+                        status: true,
+                        mensaje:"El proveedor se dio de ALTA correctamente"
+                    });
+                }else{
+                    console.log('El error  es : '+ err); 
+                }
+            })
+    //     }
+    // })
+ });
+
+///// BAJA  /////
+
+router.put('/bajaproveedores/:id',(req, res)=>{
+    //asigna a id_alumno el valor que recibe por el parametro 
+    let id = req.params.id; 
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            let query=`UPDATE proveedores set Estado = 'B' WHERE idProveedores='${id}'`;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.json({
+                        status: true,
+                        mensaje:"El proveedor se dio de BAJA correctamente"
+                    });
+                }else{
+                    console.log('El error  es : '+ err); 
+                }
+            })
+    //     }
+    // })
+ });
+
 
 //metodo para insertar proveedores a travez del metodo POST
 router.post('/Proveedores', (req, res)=>{
@@ -613,6 +677,18 @@ router.delete('/Proveedores/:id',verificarToken ,(req, res)=>{
         }
     })
  });
+
+
+
+
+
+
+////////////////////////////////////////////////////////
+/////////////////////CLIENTES /////////////////////////
+//////////////////////////////////////////////////////
+
+
+
 
  //Devuelve a todos los Clientes activos de nuestra base de datos 
  router.get('/clientes', (req, res)=>{
