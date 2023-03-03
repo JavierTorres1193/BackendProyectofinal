@@ -31,27 +31,8 @@ router.get('/buzosycamperas',  (req, res)=>{
 });
 
 
-router.put('/cambiobuzosycamperas/:id', (req, res)=>{
-     let idbuzosycamperas  = req.params.idbuzosycamperas;
-     let estado=req.body.estado  
-     
-     let query=`UPDATE buzosycamperas SET estado='${estado}' WHERE idbuzosycamperas='${idbuzosycamperas}'`;
-     mysqlConeccion.query(query, (err, registros)=>{
-        if(!err){
-            res.json({
-                status: true,
-                mensaje:"El estado del buzosycamperas se cambio correctamente"
-            });
-        }else{
-            res.json({
-                status: false,
-                mensaje:"Hubo un error"
-            });
-        }
-    })
-    
-});
-// alta
+
+// alta y baja
 router.put('/altabuzosycamperas/:id',(req, res)=>{
     //asigna a id_alumno el valor que recibe por el parametro 
     let id = req.params.id; 
@@ -74,7 +55,6 @@ router.put('/altabuzosycamperas/:id',(req, res)=>{
     // })
  });
 
-///// BAJA CLIENTE /////
 
 router.put('/bajabuzosycamperas/:id',(req, res)=>{
     //asigna a id_alumno el valor que recibe por el parametro 
@@ -99,24 +79,7 @@ router.put('/bajabuzosycamperas/:id',(req, res)=>{
  });
 
 
-
-router.post('/buzosycamperas', (req, res)=>{
-    const { idbuzosycamperas } =req.body
-     console.log(req.body);
-            let query=`INSERT INTO buzosycamperas (idbuzosycamperas, estado) VALUES ('${idbuzosycamperas}', 'A')`;
-            mysqlConeccion.query(query, (err, registros)=>{
-                if(!err){
-                    res.json({
-                        status: true,
-                        mensaje:"buzosycamperas se dio de Alta correctamente"
-                    });
-                }else{
-                    console.log(err)
-                }
-            })
-      
-    
-});
+//Create
 
 
 
@@ -775,30 +738,22 @@ router.put('/bajaclientes/:id',(req, res)=>{
     // })
  });
 
-// Cambio de estado//
-// router.put('/cambioestadoclientes/:id', (req, res)=>{
-//     let id  = req.params.idClientes;
-//     let estado=req.body.Estado
-
-//     let query=`UPDATE alumnos SET Estado='${Estado}' WHERE idClientes='${idClientes}'`;
-//     mysqlConeccion.query(query, (err, registros)=>{
-//        if(!err){
-//            res.json({
-//                status: true,
-//                mensaje:"El estado del cliente se cambio correctamente"
-//            });
-//        }else{
-//            res.json({
-//                status: false,
-//                mensaje:"Hubo un error"
-//            });
-//        }
-//    })
-
-// });
-
-
-
+//EDITAR
+router.post('/clientes', (req, res)=>{
+    const { Nombre, Direccion, Telefono } = req.body
+    
+            let query=`INSERT INTO clientes (Nombre, Direccion, Telefono) VALUES ('${Nombre}','${Direccion}','${Telefono}')`;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.send('Se inserto correctamente el cliente: '+Nombre);
+                }else{
+                    console.log(err)
+                    res.send('El error es: '+err);
+                }
+            })
+       
+    
+});
 
 
 // EDITAR //
