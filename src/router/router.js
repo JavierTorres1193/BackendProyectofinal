@@ -650,20 +650,25 @@ router.post('/clientes/:id', (req, res)=>{
     
 });
 
-//metodo para eliminar los datos de un Cliente en particular
+
+//ALTA CLIENTE
+
 router.put('/altaclientes/:id',(req, res)=>{
     //asigna a id_alumno el valor que recibe por el parametro 
-    let id  = req.params.id; 
+    let id = req.params.id; 
     // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
     //     if(error){
     //         res.sendStatus(403);
         // }else{
-            let query=`UPDATE FROM Clientes set Estado = 'A' WHERE idClientes='${id}'`;
+            let query=`UPDATE clientes set Estado = 'A' WHERE idClientes='${id}'`;
             mysqlConeccion.query(query, (err, registros)=>{
                 if(!err){
-                    res.send(''+id);
+                    res.json({
+                        status: true,
+                        mensaje:"El usuario se dio de ALTA correctamente"
+                    });
                 }else{
-                    res.send('El error  es : '+ err); 
+                    console.log('El error  es : '+ err); 
                 }
             })
     //     }
@@ -674,17 +679,20 @@ router.put('/altaclientes/:id',(req, res)=>{
 
 router.put('/bajaclientes/:id',(req, res)=>{
     //asigna a id_alumno el valor que recibe por el parametro 
-    let id = req.params.idClientes; 
+    let id = req.params.id; 
     // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
     //     if(error){
     //         res.sendStatus(403);
         // }else{
-            let query=`UPDATE FROM clientes set Estado = 'B' WHERE idClientes='${id}'`;
+            let query=`UPDATE clientes set Estado = 'B' WHERE idClientes='${id}'`;
             mysqlConeccion.query(query, (err, registros)=>{
                 if(!err){
-                    res.send(''+id);
+                    res.json({
+                        status: true,
+                        mensaje:"El usuario se dio de BAJA correctamente"
+                    });
                 }else{
-                    res.send('El error  es : '+ err); 
+                    console.log('El error  es : '+ err); 
                 }
             })
     //     }
