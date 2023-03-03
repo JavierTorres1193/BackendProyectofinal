@@ -3,7 +3,7 @@ const router = express();
 // libreria que utilizaremos para la encriptacion de los password
 const bcrypt= require('bcrypt');
 // libreria que utilizaremos para la generacion de nuesrto token
-const jwt= require('jsonwebtoken');
+// const jwt= require('jsonwebtoken');
 //////archivo de coneccion
 const mysqlConeccion = require('../database/database');
 //////fin archivo de coneccion
@@ -559,13 +559,13 @@ router.delete('/remeras/:idremeras', (req, res)=>{
 });
 
 //Devuelve a todos los Proveedores activos de nuestra base de datos 
-router.get('/Proveedores', verificarToken, (req, res)=>{
+router.get('/Proveedores',  (req, res)=>{
     
-    jwt.verify(req.token, 'siliconKey', (error)=>{
-        if(error){
-            res.sendStatus(403);
-        }else{
-            const query='select * from Proveedores';
+    // jwt.verify(req.token, 'siliconKey', (error)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            const query='select * from proveedores';
             mysqlConeccion.query(query, (err, rows)=>{
                 if(!err){
                     res.json(rows);
@@ -573,8 +573,8 @@ router.get('/Proveedores', verificarToken, (req, res)=>{
                     console.log(err)
                 }
             })
-        }
-    });    
+    //     }
+    // });    
 });
 
 //metodo para insertar proveedores a travez del metodo POST
@@ -615,26 +615,26 @@ router.delete('/Proveedores/:id',verificarToken ,(req, res)=>{
  });
 
  //Devuelve a todos los Clientes activos de nuestra base de datos 
-router.get('/Clientes', verificarToken, (req, res)=>{
-    
-    jwt.verify(req.token, 'siliconKey', (error)=>{
-        if(error){
-            res.sendStatus(403);
-        }else{
-            const query='select * from Clientes';
-            mysqlConeccion.query(query, (err, rows)=>{
+ router.get('/clientes', (req, res)=>{
+
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            mysqlConeccion.query('select * from Clientes', (err, registro)=>{
                 if(!err){
-                    res.json(rows);
+                    res.json(registro);
                 }else{
                     console.log(err)
                 }
             })
-        }
-    });    
+        // }
+    // })   
+    
 });
 
 //metodo para insertar Clientes a travez del metodo POST
-router.post('/Clientes', (req, res)=>{
+router.post('/clientes/:id', (req, res)=>{
     const { idClientes, nombre, direccion, telefono} = req.body
     
             let query=`INSERT INTO Clientes (idClientes, nombre, direccion) VALUES ('${idClientes}','${nombre}','${direccion}','${telefono}','A')`;
@@ -651,24 +651,93 @@ router.post('/Clientes', (req, res)=>{
 });
 
 //metodo para eliminar los datos de un Cliente en particular
-router.delete('/Clientes/:id',verificarToken ,(req, res)=>{
+router.put('/altaclientes/:id',(req, res)=>{
     //asigna a id_alumno el valor que recibe por el parametro 
-    let idClientes  = req.params.idClientes; 
-    jwt.verify(req.token, 'siliconKey', (error, valido)=>{
-        if(error){
-            res.sendStatus(403);
-        }else{
-            let query=`DELETE FROM Clientes WHERE idClientes='${idClientes}'`;
+    let id  = req.params.id; 
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            let query=`UPDATE FROM Clientes set Estado = 'A' WHERE idClientes='${id}'`;
             mysqlConeccion.query(query, (err, registros)=>{
                 if(!err){
-                    res.send('El cliente que ELIMINAMOS es ID : '+idClientes);
+                    res.send(''+id);
                 }else{
                     res.send('El error  es : '+ err); 
                 }
             })
-        }
-    })
+    //     }
+    // })
  });
+
+///// BAJA CLIENTE /////
+
+router.put('/bajaclientes/:id',(req, res)=>{
+    //asigna a id_alumno el valor que recibe por el parametro 
+    let id = req.params.idClientes; 
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            let query=`UPDATE FROM clientes set Estado = 'B' WHERE idClientes='${id}'`;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.send(''+id);
+                }else{
+                    res.send('El error  es : '+ err); 
+                }
+            })
+    //     }
+    // })
+ });
+
+// Cambio de estado//
+// router.put('/cambioestadoclientes/:id', (req, res)=>{
+//     let id  = req.params.idClientes;
+//     let estado=req.body.Estado
+
+//     let query=`UPDATE alumnos SET Estado='${Estado}' WHERE idClientes='${idClientes}'`;
+//     mysqlConeccion.query(query, (err, registros)=>{
+//        if(!err){
+//            res.json({
+//                status: true,
+//                mensaje:"El estado del cliente se cambio correctamente"
+//            });
+//        }else{
+//            res.json({
+//                status: false,
+//                mensaje:"Hubo un error"
+//            });
+//        }
+//    })
+
+// });
+
+
+
+
+
+// EDITAR //
+// router.put('/editarclientes' , (req, res)=>{
+//     //asigna a id_curso el valor que recibe por el parametro 
+//     let id = req.params.id;
+//     const { idClientes,Nombre, Direccion, Telefono, Estado } =req.body
+//     console.log(req.body)
+//     let query=`UPDATE Clientes SET idClientes='${idClientes}', Nombre='${Nombre}', Direccion='${Direccion}', Telefono='${Telefono}', Estado='${Estado}'`;
+//     mysqlConeccion.query(query, (err, registros)=>{
+//         if(!err){
+//             res.send('El Id que editamos es : '+idClientes);
+//         }else{
+//             console.log(err)
+//         }
+//     })
+
+// });
+
+
+
+
+
 
 ////////////// /////////////////
 //////////////Usuarios /////////
