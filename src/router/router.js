@@ -89,442 +89,276 @@ router.put('/bajabuzosycamperas/:id',(req, res)=>{
 ////////////////////// CHANCLAS /////////////////////////
 
 
-
-//.Devuelve  todos los datos chanclas
-router.get('/chanclas', (req, res)=>{
+//.Devuelve  todos los datos buzosycamperas
+router.get('/chanclas',  (req, res)=>{
     // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
     //     if(error){
     //         res.sendStatus(403);
         // }else{
-        mysqlConeccion.query('select * from chanclas order by estado, idchanclas', (err, registro)=>{
+        mysqlConeccion.query('select * from chanclas', (err, registro)=>{
             if(!err){
                 res.json(registro);
             }else{
                 console.log(err)
             }
         })
-    //     }
+        // }
     // })
 });
 
 
-router.put('/chanclas/:id', (req, res)=>{
-     let idchanclas  = req.params.idchanclas;
-     let estado=req.body.estado  
-     
-     let query=`UPDATE chanclas SET estado='${estado}' WHERE idchanclas='${idchanclas}'`;
-     mysqlConeccion.query(query, (err, registros)=>{
-        if(!err){
-            res.json({
-                status: true,
-                mensaje:"El estado de chanclas se cambio correctamente"
-            });
-        }else{
-            res.json({
-                status: false,
-                mensaje:"Hubo un error"
-            });
-        }
-    })
-    
-});
-// alta
-router.put('/altachanclas/:id', (req, res)=>{
-    let id  = req.params.id;
-    let query=`UPDATE chanclas SET estado='A' WHERE idchanclas='${idchanclas}'`;
 
-     mysqlConeccion.query(query, (err, registros)=>{
-        if(!err){
-            res.json({
-                status: true,
-                mensaje:"chanclas se dio de Alta correctamente"
-            });
-        }else{
-           res.json({
-                status: false,
-                mensaje:"Hubo un error"
-            });
-        }
-    })
-    
-});
-
-router.get('/chanclas/:idchanclas',(req, res)=>{
-
-        const  { idchanclas } = req.params;
-                mysqlConeccion.query('select * from chanclas where idchanclas=?',[idchanclas], (err, registros)=>{
-                    if(!err){
-                        res.json(registros);
-                    }else{
-                        console.log(err)
-                    }
-                })
-       
-    });
-
-router.post('/chanclas', (req, res)=>{
-    const { idchanclas } =req.body
-     console.log(req.body);
-            let query=`INSERT INTO chanclas (idchanclas, estado) VALUES ('${idchanclas}', 'A')`;
+// alta y baja
+router.put('/altachanclas/:id',(req, res)=>{
+    //asigna a id_alumno el valor que recibe por el parametro 
+    let id = req.params.id; 
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            let query=`UPDATE chanclas set Estado = 'A' WHERE idChanclas='${id}'`;
             mysqlConeccion.query(query, (err, registros)=>{
                 if(!err){
                     res.json({
                         status: true,
-                        mensaje:"chanclas se dio de Alta correctamente"
+                        mensaje:"El producto se dio de ALTA correctamente"
                     });
                 }else{
-                    console.log(err)
+                    console.log('El error  es : '+ err); 
                 }
             })
-      
-    
-});
+    //     }
+    // })
+ });
 
-//metodo para eliminar los datos en particular
-router.delete('/chanclas/:idchanclas', (req, res)=>{
-   let idchanclas  = req.params.idchanclas; 
-   jwt.verify(req.token, 'siliconKey', (error, valido)=>{
-    if(error){
-        res.sendStatus(403);
-    }else{
-        let query=`DELETE FROM chanclas WHERE idchanclas='${idchanclas}'`;
-        mysqlConeccion.query(query, (err, registros)=>{
+
+router.put('/bajachanclas/:id',(req, res)=>{
+    //asigna a id_alumno el valor que recibe por el parametro 
+    let id = req.params.id; 
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            let query=`UPDATE chanclas set Estado = 'B' WHERE idChanclas='${id}'`;
+            mysqlConeccion.query(query, (err, registros)=>{
                 if(!err){
-                    res.send('El Id que ELIMINAMOS es : '+registros);
+                    res.json({
+                        status: true,
+                        mensaje:"El producto se dio de BAJA correctamente"
+                    });
                 }else{
-                    res.send('El error  es : '+ err); 
+                    console.log('El error  es : '+ err); 
                 }
             })
-        }
-    })
-});
+    //     }
+    // })
+ });
+
+
+
+
 
 //.Devuelve  todos los datos pantalones
+
+
 router.get('/pantalones',  (req, res)=>{
     // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
     //     if(error){
     //         res.sendStatus(403);
         // }else{
-        mysqlConeccion.query('select * from pantalones order by estado, idpantalones', (err, registro)=>{
+        mysqlConeccion.query('select * from pantalones', (err, registro)=>{
             if(!err){
                 res.json(registro);
             }else{
                 console.log(err)
             }
         })
-    //     }
+        // }
     // })
 });
 
 
-router.put('/cambiopantalones/:id', (req, res)=>{
-     let idpantalones  = req.params.idpantalones;
-     let estado=req.body.estado  
-     
-     let query=`UPDATE pantalones SET estado='${estado}' WHERE idpantalones='${idpantalones}'`;
-     mysqlConeccion.query(query, (err, registros)=>{
-        if(!err){
-            res.json({
-                status: true,
-                mensaje:"El estado del pantalones se cambio correctamente"
-            });
-        }else{
-            res.json({
-                status: false,
-                mensaje:"Hubo un error"
-            });
-        }
-    })
-    
-});
-// alta
-router.put('/pantalones/:id', (req, res)=>{
-    let idpantalones  = req.params.idpantalones;
-    let query=`UPDATE pantalones SET estado='A' WHERE idpantalones='${idpantalones}'`;
 
-     mysqlConeccion.query(query, (err, registros)=>{
-        if(!err){
-            res.json({
-                status: true,
-                mensaje:"pantalones se dio de Alta correctamente"
-            });
-        }else{
-           res.json({
-                status: false,
-                mensaje:"Hubo un error"
-            });
-        }
-    })
-    
-});
-
-router.get('/pantalones/:idpantalones',(req, res)=>{
-
-        const  { idpantalones } = req.params;
-                mysqlConeccion.query('select * from pantalones where idpantalones=?',[idpantalones], (err, registros)=>{
-                    if(!err){
-                        res.json(registros);
-                    }else{
-                        console.log(err)
-                    }
-                })
-       
-    });
-
-router.post('/pantalones', (req, res)=>{
-    const { idpantalones } =req.body
-     console.log(req.body);
-            let query=`INSERT INTO pantalones (idpantalones, estado) VALUES ('${idpantalones}', 'A')`;
+// alta y baja
+router.put('/altapantalones/:id',(req, res)=>{
+    //asigna a id_alumno el valor que recibe por el parametro 
+    let id = req.params.id; 
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            let query=`UPDATE pantalones set Estado = 'A' WHERE idPantalones='${id}'`;
             mysqlConeccion.query(query, (err, registros)=>{
                 if(!err){
                     res.json({
                         status: true,
-                        mensaje:"pantalones se dio de Alta correctamente"
+                        mensaje:"El producto se dio de ALTA correctamente"
                     });
                 }else{
-                    console.log(err)
+                    console.log('El error  es : '+ err); 
                 }
             })
-      
-    
-});
+    //     }
+    // })
+ });
 
-//metodo para eliminar los datos en particular
-router.delete('/pantalones/:idpantalones', (req, res)=>{
-   let idpantalones  = req.params.idpantalones; 
-   jwt.verify(req.token, 'siliconKey', (error, valido)=>{
-    if(error){
-        res.sendStatus(403);
-    }else{
-        let query=`DELETE FROM pantalones WHERE idpantalones='${idpantalones}'`;
-        mysqlConeccion.query(query, (err, registros)=>{
+
+router.put('/bajapantalones/:id',(req, res)=>{
+    //asigna a id_alumno el valor que recibe por el parametro 
+    let id = req.params.id; 
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            let query=`UPDATE pantalones set Estado = 'B' WHERE idPantalones='${id}'`;
+            mysqlConeccion.query(query, (err, registros)=>{
                 if(!err){
-                    res.send('El Id que ELIMINAMOS es : '+registros);
+                    res.json({
+                        status: true,
+                        mensaje:"El producto se dio de BAJA correctamente"
+                    });
                 }else{
-                    res.send('El error  es : '+ err); 
+                    console.log('El error  es : '+ err); 
                 }
             })
-        }
-    })
-});
+    //     }
+    // })
+ });
+
 
 //.Devuelve  todos los datos mallas
+//.Devuelve  todos los datos buzosycamperas
 router.get('/mallas',  (req, res)=>{
     // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
     //     if(error){
     //         res.sendStatus(403);
         // }else{
-        mysqlConeccion.query('select * from mallas order by estado, idMallas', (err, registro)=>{
+        mysqlConeccion.query('select * from mallas', (err, registro)=>{
             if(!err){
                 res.json(registro);
             }else{
                 console.log(err)
             }
         })
-    //     }
+        // }
     // })
 });
 
 
-router.put('/cambiomallas/:id', (req, res)=>{
-     let idmallas  = req.params.idmallas;
-     let estado=req.body.estado  
-     
-     let query=`UPDATE mallas SET estado='${estado}' WHERE idmallas='${idmallas}'`;
-     mysqlConeccion.query(query, (err, registros)=>{
-        if(!err){
-            res.json({
-                status: true,
-                mensaje:"El estado de mallas se cambio correctamente"
-            });
-        }else{
-            res.json({
-                status: false,
-                mensaje:"Hubo un error"
-            });
-        }
-    })
-    
-});
-// alta
-router.put('/mallas/:id', (req, res)=>{
-    let idmallas  = req.params.idmallas;
-    let query=`UPDATE mallas SET estado='A' WHERE idmallas='${idmallas}'`;
 
-     mysqlConeccion.query(query, (err, registros)=>{
-        if(!err){
-            res.json({
-                status: true,
-                mensaje:"mallas se dio de Alta correctamente"
-            });
-        }else{
-           res.json({
-                status: false,
-                mensaje:"Hubo un error"
-            });
-        }
-    })
-    
-});
-
-router.get('/mallas/:idmallas',(req, res)=>{
-
-        const  { idmallas } = req.params;
-                mysqlConeccion.query('select * from mallas where idmallas=?',[idmallas], (err, registros)=>{
-                    if(!err){
-                        res.json(registros);
-                    }else{
-                        console.log(err)
-                    }
-                })
-       
-    });
-
-router.post('/mallas', (req, res)=>{
-    const { idmallas } =req.body
-     console.log(req.body);
-            let query=`INSERT INTO mallas (idmallas, estado) VALUES ('${idmallas}', 'A')`;
-            mysqlConeccion.query(query, (err, registros)=>{
-                if(!err){
-                    res.json({
-                        status: true,
-                        mensaje:"mallas se dio de Alta correctamente"
-                    });
-                }else{
-                    console.log(err)
-                }
-            })
-      
-    
-});
-
-//metodo para eliminar los datos en particular
-router.delete('/mallas/:idmallas', (req, res)=>{
-   let idmallas  = req.params.idmallas; 
-   jwt.verify(req.token, 'siliconKey', (error, valido)=>{
-    if(error){
-        res.sendStatus(403);
-    }else{
-        let query=`DELETE FROM mallas WHERE idmallas='${idmallas}'`;
-        mysqlConeccion.query(query, (err, registros)=>{
-                if(!err){
-                    res.send('El Id que ELIMINAMOS es : '+registros);
-                }else{
-                    res.send('El error  es : '+ err); 
-                }
-            })
-        }
-    })
-});
-
-//.Devuelve  todos los datos remeras
-router.get('/remeras', (req, res)=>{
+// alta y baja
+router.put('/altamallas/:id',(req, res)=>{
+    //asigna a id_alumno el valor que recibe por el parametro 
+    let id = req.params.id; 
     // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
     //     if(error){
     //         res.sendStatus(403);
         // }else{
-        mysqlConeccion.query('select * from remeras order by estado, idremeras', (err, registro)=>{
+            let query=`UPDATE mallas set Estado = 'A' WHERE idMallas='${id}'`;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.json({
+                        status: true,
+                        mensaje:"El producto se dio de ALTA correctamente"
+                    });
+                }else{
+                    console.log('El error  es : '+ err); 
+                }
+            })
+    //     }
+    // })
+ });
+
+
+router.put('/bajamallas/:id',(req, res)=>{
+    //asigna a id_alumno el valor que recibe por el parametro 
+    let id = req.params.id; 
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            let query=`UPDATE mallas set Estado = 'B' WHERE idMallas='${id}'`;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.json({
+                        status: true,
+                        mensaje:"El producto se dio de BAJA correctamente"
+                    });
+                }else{
+                    console.log('El error  es : '+ err); 
+                }
+            })
+    //     }
+    // })
+ });
+
+
+//.Devuelve  todos los datos remeras
+
+router.get('/remeras',  (req, res)=>{
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+        mysqlConeccion.query('select * from remeras', (err, registro)=>{
             if(!err){
                 res.json(registro);
             }else{
                 console.log(err)
             }
         })
-    //     }
+        // }
     // })
 });
 
 
-router.put('/cambioremeras/:id', (req, res)=>{
-     let idremeras  = req.params.idremeras;
-     let estado=req.body.estado  
-     
-     let query=`UPDATE remeras SET estado='${estado}' WHERE idremeras='${idremeras}'`;
-     mysqlConeccion.query(query, (err, registros)=>{
-        if(!err){
-            res.json({
-                status: true,
-                mensaje:"El estado de remeras se cambio correctamente"
-            });
-        }else{
-            res.json({
-                status: false,
-                mensaje:"Hubo un error"
-            });
-        }
-    })
-    
-});
-// alta
-router.put('/remeras/:id', (req, res)=>{
-    let idremeras  = req.params.idremeras;
-    let query=`UPDATE remeras SET estado='A' WHERE idremeras='${idremeras}'`;
 
-     mysqlConeccion.query(query, (err, registros)=>{
-        if(!err){
-            res.json({
-                status: true,
-                mensaje:"remeras se dio de Alta correctamente"
-            });
-        }else{
-           res.json({
-                status: false,
-                mensaje:"Hubo un error"
-            });
-        }
-    })
-    
-});
-
-router.get('/remeras/:idremeras',(req, res)=>{
-
-        const  { idremeras } = req.params;
-                mysqlConeccion.query('select * from remeras where idremeras=?',[idremeras], (err, registros)=>{
-                    if(!err){
-                        res.json(registros);
-                    }else{
-                        console.log(err)
-                    }
-                })
-       
-    });
-
-router.post('/remeras', (req, res)=>{
-    const { idremeras } =req.body
-     console.log(req.body);
-            let query=`INSERT INTO remeras (idremeras, estado) VALUES ('${idremeras}', 'A')`;
+// alta y baja
+router.put('/altaremeras/:id',(req, res)=>{
+    //asigna a id_alumno el valor que recibe por el parametro 
+    let id = req.params.id; 
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            let query=`UPDATE remeras set Estado = 'A' WHERE idRemeras='${id}'`;
             mysqlConeccion.query(query, (err, registros)=>{
                 if(!err){
                     res.json({
                         status: true,
-                        mensaje:"remeras se dio de Alta correctamente"
+                        mensaje:"El producto se dio de ALTA correctamente"
                     });
                 }else{
-                    console.log(err)
+                    console.log('El error  es : '+ err); 
                 }
             })
-      
-    
-});
+    //     }
+    // })
+ });
 
-//metodo para eliminar los datos en particular
-router.delete('/remeras/:idremeras', (req, res)=>{
-   let idremeras  = req.params.idremeras; 
-   jwt.verify(req.token, 'siliconKey', (error, valido)=>{
-    if(error){
-        res.sendStatus(403);
-    }else{
-        let query=`DELETE FROM remeras WHERE idremeras='${idremeras}'`;
-        mysqlConeccion.query(query, (err, registros)=>{
+
+router.put('/bajaremeras/:id',(req, res)=>{
+    //asigna a id_alumno el valor que recibe por el parametro 
+    let id = req.params.id; 
+    // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
+    //     if(error){
+    //         res.sendStatus(403);
+        // }else{
+            let query=`UPDATE remeras set Estado = 'B' WHERE idRemeras='${id}'`;
+            mysqlConeccion.query(query, (err, registros)=>{
                 if(!err){
-                    res.send('El Id que ELIMINAMOS es : '+registros);
+                    res.json({
+                        status: true,
+                        mensaje:"El producto se dio de BAJA correctamente"
+                    });
                 }else{
-                    res.send('El error  es : '+ err); 
+                    console.log('El error  es : '+ err); 
                 }
             })
-        }
-    })
-});
+    //     }
+    // })
+ });
+
 
 
 
@@ -654,7 +488,7 @@ router.delete('/Proveedores/:id',verificarToken ,(req, res)=>{
 
 
  //Devuelve a todos los Clientes activos de nuestra base de datos 
- router.get('/clientes', (req, res)=>{
+router.get('/clientes', (req, res)=>{
 
     // jwt.verify(req.token, 'siliconKey', (error, valido)=>{
     //     if(error){
