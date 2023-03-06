@@ -118,6 +118,21 @@ router.put('/edit_buzosycamperas/:id' , (req, res)=>{
 
 
 
+router.post('/listarbuzosycamperas', (req, res)=>{
+    const { Talle, Cantidad, Color} = req.body
+    
+            let query=`INSERT INTO buzosycamperas (Talle, Cantidad, Color) VALUES ('${Talle}','${Cantidad}','${Color}') `;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.send('Se inserto correctamente nuestro producto: '+Talle+Cantidad+Color);
+                }else{
+                    console.log(err)
+                    res.send('El error es: '+err);
+                }
+            })
+       
+    
+});
 
 
 
@@ -232,6 +247,21 @@ router.put('/edit_chanclas/:id' , (req, res)=>{
 });
 
 
+router.post('/listarchanclas', (req, res)=>{
+    const { Talle, Cantidad, Color} = req.body
+    
+            let query=`INSERT INTO chanclas (Talle, Cantidad, Color) VALUES ('${Talle}','${Cantidad}','${Color}') `;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.send('Se inserto correctamente nuestro producto: '+Talle+Cantidad+Color);
+                }else{
+                    console.log(err)
+                    res.send('El error es: '+err);
+                }
+            })
+       
+    
+});
 
 
 
@@ -343,6 +373,22 @@ router.put('/edit_pantalones/:id' , (req, res)=>{
 });
 
 
+router.post('/listarpantalones', (req, res)=>{
+    const { Talle, Cantidad, Color} = req.body
+    
+            let query=`INSERT INTO pantalones (Talle, Cantidad, Color) VALUES ('${Talle}','${Cantidad}','${Color}') `;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.send('Se inserto correctamente nuestro producto: '+Talle+Cantidad+Color);
+                }else{
+                    console.log(err)
+                    res.send('El error es: '+err);
+                }
+            })
+       
+    
+});
+
 
 //.Devuelve  todos los datos mallas
 //.Devuelve  todos los datos buzosycamperas
@@ -449,6 +495,29 @@ router.put('/edit_mallas/:id' , (req, res)=>{
 
 
 
+router.post('/listarmallas', (req, res)=>{
+    const { Talle, Cantidad, Color} = req.body
+    
+            let query=`INSERT INTO mallas (Talle, Cantidad, Color) VALUES ('${Talle}','${Cantidad}','${Color}') `;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.send('Se inserto correctamente nuestro producto: '+Talle+Cantidad+Color);
+                }else{
+                    console.log(err)
+                    res.send('El error es: '+err);
+                }
+            })
+       
+    
+});
+
+
+
+
+
+
+
+
 //.Devuelve  todos los datos remeras
 
 router.get('/remeras',  (req, res)=>{
@@ -551,6 +620,23 @@ router.put('/edit_remeras/:id' , (req, res)=>{
         }
     })
        
+});
+
+
+router.post('/listarremeras', (req, res)=>{
+    const { Talle, Cantidad, Color} = req.body
+    
+            let query=`INSERT INTO remeras (Talle, Cantidad, Color) VALUES ('${Talle}','${Cantidad}','${Color}') `;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.send('Se inserto correctamente nuestro producto: '+Talle+Cantidad+Color);
+                }else{
+                    console.log(err)
+                    res.send('El error es: '+err);
+                }
+            })
+       
+    
 });
 
 
@@ -665,6 +751,22 @@ router.put('/edit_proveedor/:id' , (req, res)=>{
         }
     })
        
+});
+
+router.post('/proveedores', (req, res)=>{
+    const { Nombre, Direccion, Telefono} = req.body
+    
+            let query=`INSERT INTO proveedores (Nombre, Direccion, Telefono) VALUES ('${Nombre}','${Direccion}','${Telefono}') `;
+            mysqlConeccion.query(query, (err, registros)=>{
+                if(!err){
+                    res.send('Se inserto correctamente nuestro proveedor: '+Nombre);
+                }else{
+                    console.log(err)
+                    res.send('El error es: '+err);
+                }
+            })
+       
+    
 });
 
 
@@ -863,19 +965,18 @@ router.get('/usuarios', verificarToken, (req, res)=>{
 router.post('/login', (req, res)=>{
     const {username, password} =req.body
     if(username!=undefined && password!=undefined){
-        mysqlConeccion.query('select u.id, u.username,  u.password,  u.email, u.apellido_nombre from usuarios u where u.estado="A" AND username=?',[username], (err, rows)=>{
+        mysqlConeccion.query('select u.username,  u.password,  u.email, u.apellido_nombre from usuarios u where u.estado="A" AND username=?',[username], (err, rows)=>{
             if(!err){
                 if(rows.length!=0){
                     const bcryptPassword = bcrypt.compareSync(password, rows[0].password);
                     if(bcryptPassword){
-                        jwt.sign({rows}, 'siliconKey' ,(err, token)=>{
-                            res.json(
-                                {
-                                    status: true,
-                                    datos: rows,
-                                    token: token
-                                });
-                        }) 
+                       res.json(
+                        {
+                            status: true,
+                            datos: rows,
+                            mensaje: "Ingreso correctamente"
+                        }
+                       )
                     }else{
                         res.json(
                             {
@@ -889,7 +990,7 @@ router.post('/login', (req, res)=>{
                             status: false,
                             mensaje:"El usuario no existe "
                         });
-                    
+
                 }
             }else{
                 res.json(
@@ -897,14 +998,14 @@ router.post('/login', (req, res)=>{
                         status: false,
                         mensaje:"Error en el servidor"
                     });
-                
+                    
             }
         });
     }else{
         res.json({
             status: false,
             mensaje:"Faltan completar datos"
-        });
+        })
     }
 });
 
