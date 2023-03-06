@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `pantalones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pantalones` (
-  `idpantalones` int NOT NULL AUTO_INCREMENT,
+  `idPantalones` int NOT NULL AUTO_INCREMENT,
   `Color` varchar(45) DEFAULT NULL,
   `Talle` varchar(5) DEFAULT NULL,
   `Cantidad` varchar(45) DEFAULT NULL,
   `Estado` enum('A','B') NOT NULL DEFAULT 'A',
-  PRIMARY KEY (`idpantalones`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`idPantalones`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `pantalones` (
 
 LOCK TABLES `pantalones` WRITE;
 /*!40000 ALTER TABLE `pantalones` DISABLE KEYS */;
-INSERT INTO `pantalones` VALUES (1,'Rojo','L','5','A'),(2,'Amarillo','XL','9','A'),(3,'Celeste','M','15','A'),(4,'Fucsia','S','12','A'),(5,'Azul','XXL','2','A');
+INSERT INTO `pantalones` VALUES (1,'Turquesa','XXL','1','B'),(2,'Amarillo','XL','9','A'),(3,'Celeste','M','15','A'),(4,'Fucsia','S','12','B'),(5,'Azul','XXL','2','A'),(6,'Morado','M','1234','A');
 /*!40000 ALTER TABLE `pantalones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-28 10:35:40
+-- Dump completed on 2023-03-06 17:39:34

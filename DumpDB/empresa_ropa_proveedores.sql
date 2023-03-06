@@ -27,8 +27,9 @@ CREATE TABLE `proveedores` (
   `Nombre` varchar(45) DEFAULT NULL,
   `Direccion` varchar(45) DEFAULT NULL,
   `Telefono` varchar(45) DEFAULT NULL,
+  `Estado` enum('A','B') DEFAULT 'A',
   PRIMARY KEY (`idProveedores`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +38,7 @@ CREATE TABLE `proveedores` (
 
 LOCK TABLES `proveedores` WRITE;
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
+INSERT INTO `proveedores` VALUES (1,'The old image','asd 1234','3698655625','B'),(2,'La remerita','lapla','1231231212','A'),(3,'mercado modelo','costanera que se yo ','12314124','A'),(4,'patapata','elcentro','123131213','B'),(5,'javi','tucasita ','1231231','B'),(6,'Pancho De la cruz','mexico','1152152515','A');
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-28 10:35:40
+-- Dump completed on 2023-03-06 17:39:33

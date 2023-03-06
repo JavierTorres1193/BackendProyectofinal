@@ -29,7 +29,7 @@ CREATE TABLE `buzosycamperas` (
   `Cantidad` varchar(45) DEFAULT NULL,
   `Estado` enum('A','B') DEFAULT 'A',
   PRIMARY KEY (`idBuzosyCamperas`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `buzosycamperas` (
 
 LOCK TABLES `buzosycamperas` WRITE;
 /*!40000 ALTER TABLE `buzosycamperas` DISABLE KEYS */;
-INSERT INTO `buzosycamperas` VALUES (1,'M','Rojo','3','A'),(2,'M','Verde','2','A'),(3,'L','Azul','10','A'),(4,'XL','Violeta','11','A'),(5,'XXL','Blanco','8','A');
+INSERT INTO `buzosycamperas` VALUES (1,'Xl','Naranja','3','B'),(2,'M','Verde militar','2','B'),(3,'L','Azul','10','A'),(4,'XL','Violeta','11','B'),(5,'XXL','Blanco','8','A'),(6,'XXL','FUCSIA','8','A');
 /*!40000 ALTER TABLE `buzosycamperas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-28 10:35:40
+-- Dump completed on 2023-03-06 17:39:33

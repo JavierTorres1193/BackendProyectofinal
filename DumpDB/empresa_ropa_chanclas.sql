@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `chanclas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chanclas` (
-  `idchanclas` int NOT NULL AUTO_INCREMENT,
+  `idChanclas` int NOT NULL AUTO_INCREMENT,
   `Cantidad` int NOT NULL,
   `Color` varchar(45) DEFAULT NULL,
   `Talle` varchar(45) DEFAULT NULL,
   `Estado` enum('A','B') NOT NULL DEFAULT 'A',
-  PRIMARY KEY (`idchanclas`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`idChanclas`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `chanclas` (
 
 LOCK TABLES `chanclas` WRITE;
 /*!40000 ALTER TABLE `chanclas` DISABLE KEYS */;
-INSERT INTO `chanclas` VALUES (1,4,'Rojo','L','A'),(2,5,'Verde','XL','A'),(3,8,'Azul','M','A'),(4,10,'Violeta','S','A'),(5,2,'Blanco','XXL','A');
+INSERT INTO `chanclas` VALUES (1,4,'Rojo','L','B'),(2,5,'Verde','XL','B'),(3,8,'Azul','M','A'),(4,10,'Violeta','S','B'),(5,2,'Blanco','XXL','B'),(6,1,'Azul','XXXL','A'),(7,123,'Rojo','M','A'),(8,12345,'Purpura y azul','XXXL','A');
 /*!40000 ALTER TABLE `chanclas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-28 10:35:39
+-- Dump completed on 2023-03-06 17:39:33

@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `remeras`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `remeras` (
-  `idremeras` int NOT NULL AUTO_INCREMENT,
+  `idRemeras` int NOT NULL AUTO_INCREMENT,
   `Talle` varchar(45) DEFAULT NULL,
   `Cantidad` int NOT NULL,
   `Color` varchar(45) DEFAULT NULL,
   `Estado` enum('A','B') DEFAULT 'A',
-  PRIMARY KEY (`idremeras`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`idRemeras`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `remeras` (
 
 LOCK TABLES `remeras` WRITE;
 /*!40000 ALTER TABLE `remeras` DISABLE KEYS */;
-INSERT INTO `remeras` VALUES (1,'M',15,'Naranja','A'),(2,'XL',7,'Verde','A'),(3,'M',19,'Blanco','A'),(4,'S',21,'Amarillo','A'),(5,'XXL',9,'Negro','A'),(6,'L',4,'Azul','A');
+INSERT INTO `remeras` VALUES (1,'XXL',3,'Verde Militar','B'),(2,'XL',7,'Verde','A'),(3,'M',19,'Blanco','A'),(4,'S',21,'Amarillo','A'),(5,'XXL',9,'Negro','A'),(6,'L',4,'Azul','A'),(7,'XL',789,'Negro y Amarillo','A');
 /*!40000 ALTER TABLE `remeras` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-28 10:35:40
+-- Dump completed on 2023-03-06 17:39:33

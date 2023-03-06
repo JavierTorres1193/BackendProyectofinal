@@ -27,8 +27,9 @@ CREATE TABLE `clientes` (
   `Nombre` varchar(45) DEFAULT NULL,
   `Direccion` varchar(45) DEFAULT NULL,
   `Telefono` varchar(45) DEFAULT NULL,
+  `Estado` enum('A','B') DEFAULT 'A',
   PRIMARY KEY (`idClientes`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +38,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (1,'Juan Jose Paso','Pellegrini 1478','3786554466','A'),(2,'Juan perez','itu','2131232131','B'),(3,'lizy tagliani','la casita de german ','123123213','A'),(4,'Lapla SRL','Roque Balbo 159','3654885522','A'),(5,'pinpon','el reino del muy muy lejano ','12414124242','A'),(6,'javiitorres126','las hortensias','2131232321','B'),(7,'elsaca chispa ','ituzainyork','1245124124','B');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-28 10:35:40
+-- Dump completed on 2023-03-06 17:39:33

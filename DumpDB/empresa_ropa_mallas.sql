@@ -29,7 +29,7 @@ CREATE TABLE `mallas` (
   `Color` varchar(45) DEFAULT NULL,
   `Estado` enum('A','B') NOT NULL DEFAULT 'A',
   PRIMARY KEY (`idMallas`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `mallas` (
 
 LOCK TABLES `mallas` WRITE;
 /*!40000 ALTER TABLE `mallas` DISABLE KEYS */;
-INSERT INTO `mallas` VALUES (1,'L',4,'Rojo','A'),(2,'XL',7,'Verde','A'),(3,'M',19,'Azul','A'),(4,'S',27,'Violeta','A'),(5,'XXL',9,'Blanco','A');
+INSERT INTO `mallas` VALUES (1,'L',4,'Rojo','B'),(2,'XL',7,'Verde','B'),(3,'M',19,'Azul','A'),(4,'S',27,'Violeta','A'),(5,'XXL',7,'Azul Electrico','A'),(6,'XXL',89,'Celeste','A'),(7,'S',456,'Azul con Rojo','A');
 /*!40000 ALTER TABLE `mallas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-28 10:35:40
+-- Dump completed on 2023-03-06 17:39:34
